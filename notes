@@ -1,0 +1,83 @@
+SET NODE PATH LOCALLY in TERMINAL(IN GIT BASH TERMINAL)
+
+export PATH=/c/Users/codebase/node-v22.16.0-win-x64:$PATH
+
+Set Up React App
+npm create vite@latest app-name --template react
+npm install (npm i)
+Start the dev server: npm run dev
+
+What npm install Does:
+Reads package.json – This file lists all the dependencies your project needs.
+Downloads those dependencies – It pulls them from the npm registry (like react, react-dom, etc.).
+Creates a node_modules folder – This is where all downloaded libraries live.
+Creates or updates package-lock.json – It locks the exact versions used, ensuring the same environment on every machine.
+
+NPM= node package manager
+React itself isn't tightly coupled to Node
+React is browser code; Node is just used during development (build tools, servers, etc.). So small version bumps don’t usually cause issues unless you’re using specific Node APIs.
+
+About React:
+
+What is React?
+React is a JavaScript library used to build user interfaces, especially for single-page applications. It helps you create components that are reusable, dynamic, and interactive.
+
+Key Concepts of React:
+
+1. Components= React apps are made of components. Each component is like a building block.
+2. JSX (JavaScript XML) = write HTML-like code inside JavaScript.
+3. Props (Properties)= Props are like function arguments — they pass data from parent to child.
+4. State = State is data that changes over time in a component.
+   5.Hooks
+
+Components
+. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+
+React components are JavaScript functions that return markup:
+React component names must always start with a capital lette
+you can nest it into another component:
+example
+
+function MyButton() {
+return (
+<button>I'm a button</button>
+);
+}
+
+[ App ]
+└── [ Component A ]
+├── [ Component B ]
+└── [ Component C ]
+
+[State & Props] → Unidirectional flow → [Render with JSX] → [Virtual DOM diff] → [Real DOM update]
+
+What is useEffect?
+useEffect is a React Hook that lets you perform side effects in your components.
+Side effects include things like:
+
+1.Fetching data
+
+2.Reading from localStorage
+
+3.Navigating to another page
+
+4.Setting timers
+
+syntax
+
+useEffect(() => {
+// code to run after render
+}, [dependencies]);
+
+Why Use It?
+Redirecting Authenticated Users:
+When someone visits the login or register page, if they are already logged in (i.e., they already have a token), redirect them automatically.
+
+Runs After Initial Render:
+We don’t want to navigate while rendering — we do it after the component is on the screen.
+
+📝 Without useEffect, the redirect would happen every render — causing infinite loops or errors.
+
+useState() is a React Hook that lets you add state (i.e., data that changes) to functional components.
+
+const [stateVariable, setStateVariable] = useState(initialValue);
