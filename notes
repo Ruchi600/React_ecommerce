@@ -81,3 +81,186 @@ We don’t want to navigate while rendering — we do it after the component is 
 useState() is a React Hook that lets you add state (i.e., data that changes) to functional components.
 
 const [stateVariable, setStateVariable] = useState(initialValue);
+
+Why do we use axios in React?
+axios is a promise-based HTTP client used to make requests to external APIs or your own backend. In your e-commerce project, you need it to fetch product data, send login/registration info, or interact with any REST API.
+
+✅ Benefits of Using axios over fetch():
+
+| Feature                                      | `axios` | `fetch` (built-in)             |
+| -------------------------------------------- | ------- | ------------------------------ |
+| Automatically converts JSON                  | ✅ Yes  | ❌ No (you must use `.json()`) |
+| Handles errors more cleanly                  | ✅ Yes  | ❌ No (only network errors)    |
+| Supports `timeout`, `cancel`, etc.           | ✅ Yes  | ❌ Limited                     |
+| Supports interceptors (e.g. for auth tokens) | ✅ Yes  | ❌ No                          |
+| Works the same in Node.js & Browser          | ✅ Yes  | ❌ No (browser only)           |
+
+Footer EXplain
+
+import { Box, Typography, Container, Link, useTheme, useMediaQuery } from "@mui/material";
+
+      Box: A wrapper component from MUI, like a div with extra styling powers.
+
+      Typography: For styled text (like headings and paragraphs).
+
+      Container: Adds consistent horizontal padding and centers content.
+
+      Link: Styled anchor tag (<a>) that blends with the theme.
+
+      useTheme: Gets the current Material UI theme (like breakpoints or colors).
+
+      useMediaQuery: Lets us write responsive conditions in JavaScript (like CSS media queries).
+
+Creates a functional React component named Footer.
+
+const Footer = () => {}
+
+      Responsive Condition (JS Media Query)
+      const theme = useTheme();
+      const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+      theme.breakpoints.down("sm"): Matches screen sizes smaller than the "small" breakpoint (typically <600px).
+
+      isSmallScreen: A boolean — true on small screens, false on larger ones.
+
+What is useTheme() in MUI?
+useTheme() is a React hook provided by MUI (Material-UI) that gives you access to the current theme object used in your app — including colors, spacing, breakpoints, typography, and more.
+
+      Why Use useTheme()?
+         It allows you to:
+          Access theme-defined values like primary/secondary colors, spacing units, typography, etc.
+         Write responsive styles using theme’s breakpoints.
+         Make components consistent with your app’s overall design.
+
+      What’s Inside the theme Object?
+            theme.palette.primary.main       // e.g. "#1976d2"
+            theme.spacing(2)                 // e.g. "16px"
+            theme.typography.fontFamily     // e.g. "Roboto"
+            theme.breakpoints.values.sm     // e.g. 600 (px)
+
+      When to Use It?
+            Use useTheme():
+              When you need dynamic access to theme values inside a component.
+              Especially useful when styling with sx={{}} or styled() functions.
+              To keep UI responsive and consistent with your global theme.
+
+Some Concepts
+
+What are Props?
+Props (short for "properties") are used to pass data from one component to another in React.
+
+      🔸 They are like function parameters, but for components.
+
+
+      Why do we need Props?
+
+
+         You have a Welcome component and you want to show different names like:
+
+         "Hello Ruchi"
+
+         "Hello John"
+
+         "Hello Priya"
+
+         Instead of writing 3 separate components, you can pass a name using props.
+
+      Basic Example
+        1️⃣ Parent Component (App.js):
+
+            import React from 'react';
+            import Welcome from './Welcome';
+
+            function App() {
+            return (
+               <div>
+                  <Welcome name="Ruchi" />   //name="Ruchi" is a prop.
+                  <Welcome name="John" />
+               </div>
+            );
+            }
+
+         Child Component (Welcome.js):
+
+            import React from 'react';
+
+            function Welcome(props) {
+            return <h1>Hello {props.name}!</h1>;
+            }
+
+            export default Welcome;
+
+    🧪 Use Object Destructuring (Shortcut)
+
+               Instead of writing props.name, we often use this:
+
+               function Welcome({ name }) {
+               return <h1>Hello {name}!</h1>;
+               }
+
+      You Can Pass Multiple Props
+
+         <Profile name="Ruchi" age={25} country="India" />
+
+         function Profile({ name, age, country }) {
+            return (
+               <p>
+                  {name} is {age} years old and lives in {country}.
+               </p>
+            );
+            }
+
+       Props are Read-only
+
+What is useState?
+In React, useState is used to create and manage data inside a component — data that can change over time (like user input, toggles, counters, etc.).
+
+      A storage box inside your component that can hold a value and update it when needed.
+       Syntax
+
+        const [stateVariable, setStateFunction] = useState(initialValue);
+
+               | Part            | Meaning                                 |
+         | --------------- | --------------------------------------- |
+         | `value`         | The **current value** (like a variable) |
+         | `setValue`      | A **function** to update that value     |
+         | `useState(...)` | React function to **create state**      |
+
+     Example 1: A simple counter
+
+
+     import React, { useState } from 'react';
+
+      function Counter() {
+      const [count, setCount] = useState(0); // 🔹 count = 0 initially
+
+      const increase = () => {
+         setCount(count + 1); // 🔸 update count
+      };
+
+      return (
+         <div>
+            <h2>Count: {count}</h2> {/* 🔹 display current value */}
+            <button onClick={increase}>Increase</button>
+         </div>
+      );
+      }
+
+      export default Counter;
+
+      Real-world Uses of useState:
+
+            | Use Case            | Example Value          |
+      | ------------------- | ---------------------- |
+      | Form inputs         | `email`, `password`    |
+      | Toggle a popup      | `isOpen` (true/false)  |
+      | Show/hide password  | `showPassword`         |
+      | Shopping cart count | `cartItems`            |
+      | Loading spinner     | `loading` (true/false) |
+
+
+       Rules of useState
+      ✅ Always use it inside a function component
+
+      ✅ You can have multiple useState calls in one component
+
+      ❌ Never use it outside a component or in loops/conditions

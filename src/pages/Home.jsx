@@ -1,11 +1,24 @@
-import React from 'react';
-import { Typography, Container } from '@mui/material';
+import React, { useState } from "react";
+import { Box, Button, Typography, Grid, Paper, Container } from "@mui/material";
+import HeroSlider from "../Components/Common/HeroSlider";
+import CategorySection from "../Components/Home/CategorySection";
+import ProductList from "../Components/Home/ProductList";
+
 
 const Home = () => {
+    const [selectedCategory, setSelectedCategory] = useState("all");
+
   return (
-    <Container sx={{ mt: 4 }}>
-      <Typography variant="h4">Welcome to the Home Page</Typography>
-    </Container>
+    <>
+      <HeroSlider />
+      {/* <CategorySection onCategorySelect={setSelectedCategory} /> */}
+      <CategorySection
+        onCategorySelect={setSelectedCategory}
+        selectedCategory={selectedCategory}
+      />
+
+      <ProductList selectedCategory={selectedCategory} />
+     </>
   );
 };
 
