@@ -59,6 +59,23 @@ button:focus-visible {
   height: 100% !important;
 }
 
+html, body, #root, .page-wrapper {
+  height: 100%!important;
+  margin: 0;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;         /* 💡 this is needed */
+  flex-direction: column; /* 💡 allows child to expand */
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

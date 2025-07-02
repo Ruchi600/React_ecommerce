@@ -39,7 +39,10 @@ function Login() {
     );
 
     if (matchedUser) {
-      localStorage.setItem("token", JSON.stringify(matchedUser));
+     // localStorage.setItem("token", JSON.stringify(matchedUser));
+       localStorage.setItem('token', 'FAKE-TOKEN-123');
+       localStorage.setItem("currentUser", JSON.stringify(matchedUser));
+
       setAlert({ open: true, message: "Login successful!", severity: "success" });
       setTimeout(() => navigate("/dashboard"), 1000);
     } else {

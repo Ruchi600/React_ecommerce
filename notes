@@ -212,6 +212,7 @@ Props (short for "properties") are used to pass data from one component to anoth
        Props are Read-only
 
 What is useState?
+
 In React, useState is used to create and manage data inside a component — data that can change over time (like user input, toggles, counters, etc.).
 
       A storage box inside your component that can hold a value and update it when needed.
@@ -264,3 +265,7 @@ In React, useState is used to create and manage data inside a component — data
       ✅ You can have multiple useState calls in one component
 
       ❌ Never use it outside a component or in loops/conditions
+
+useNavigate is a React Hook.
+You cannot call a Hook outside of a component.
+React Hooks must run inside a functional component (or a custom Hook) — not at the top level of a module.
